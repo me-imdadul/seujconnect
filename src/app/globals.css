@@ -7,12 +7,12 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   color: var(--foreground);
@@ -23,5 +23,136 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .number-slide1 {
+    background: rgb(64, 175, 255);
+    background: linear-gradient(
+      128deg,
+      rgba(64, 175, 255, 1) 0%,
+      rgba(63, 97, 255, 1) 100%
+    );
+  }
+  .number-slide2 {
+    background: rgb(64, 255, 160);
+    background: linear-gradient(
+      128deg,
+      rgba(64, 175, 255, 1) 0%,
+      rgb(63, 255, 111) 100%
+    );
+  }
+
+  .dots {
+    display: flex;
+    padding: 10px 0;
+    justify-content: center;
+  }
+
+  .dot {
+    border: none;
+    width: 10px;
+    height: 10px;
+    background: #c5c5c5;
+    border-radius: 50%;
+    margin: 0 5px;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  .dot:focus {
+    outline: none;
+  }
+
+  .dot.active {
+    background: #000;
+  }
+
+  .arrow {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    fill: #fff;
+    cursor: pointer;
+  }
+
+  .arrow--left {
+    left: 5px;
+  }
+
+  .arrow--right {
+    left: auto;
+    right: 5px;
+  }
+
+  .arrow--disabled {
+    fill: rgba(255, 255, 255, 0.5);
+  }
+
+  .buttonfx {
+    color: black; /* button text color */
+    outline: none;
+
+    background: transparent;
+    border: none;
+    border-bottom: 4px solid #eee;
+    letter-spacing: 0.0625em;
+    padding: 8px 10px;
+    text-transform: uppercase;
+    font: bold 16px "Bitter", sans-serif; /* use google font */
+    line-height: 2;
+    position: relative;
+    display: inline-block;
+
+    cursor: pointer;
+    text-decoration: none; /* remove underline if using A instead of BUTTON tag */
+    overflow: hidden;
+    transition: all 0.5s;
+  }
+
+  /* //// Default effect: Slide from Top  //// */
+
+  .buttonfx:before,
+  .buttonfx:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    background: rgb(163 230 53); /* onhover background color */
+    z-index: -1;
+    transform: translate3D(
+      0,
+      -100%,
+      0
+    ); /* move elements above button so they don't appear initially */
+    transition: all 0.5s;
+  }
+
+  .buttonfx:before {
+    background: #fafcd6; /* button default background color */
+    z-index: -2;
+    transform: translate3D(0, 0, 0);
+  }
+
+  .buttonfx:hover {
+    color: white;
+  }
+
+  .buttonfx:hover:after {
+    transform: translate3D(0, 0, 0);
+    transition: all 0.5s;
+  }
+
+  .slidebottomleft:after {
+    transform: translate3D(-100%, 100%, 0);
+  }
+
+  .slidebottomleft:hover:after {
+    transform: translate3D(0, 0, 0);
+    transition: all 0.5s;
   }
 }
